@@ -1,0 +1,9 @@
+{% extends 'WebManga/base.html' %}
+
+{% block content %}
+
+{% for i in mess %}
+<p>{{ i.sender }} <br> {{ i.message }}</p>
+{% endfor %}
+
+{% endblock %}
