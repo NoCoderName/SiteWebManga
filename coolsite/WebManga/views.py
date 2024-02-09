@@ -120,14 +120,14 @@ class MessageUser(DataMixin, CreateView):
         return reverse('chat')
     
 
-# class AddManga(DataMixin, CreateView):
-#     model = User
-#     context_object_name = 'add'
-#     slug_url_kwarg = 'post_slug'
-#     template_name = 'WebManga/index.html'
-#     success_url = reverse_lazy('home')
+class AddManga(DataMixin, CreateView):
+    model = get_user_model()
+    context_object_name = 'add'
+    slug_url_kwarg = 'post_slug'
+    template_name = 'WebManga/index.html'
+    success_url = reverse_lazy('home')
 
-#     def form_valid(self, form):
-#         manga = Manga.objects.get(self.slug_url_kwarg)
-#         form.instance.read = manga
-#         return super().form_valid(form)
+    def form_valid(self, form):
+        manga = Manga.objects.get(self.slug_url_kwarg)
+        form.instance.read = manga
+        return super().form_valid(form)

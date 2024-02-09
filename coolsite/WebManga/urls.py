@@ -14,5 +14,5 @@ urlpatterns = [
     path('register/', RegisterUser.as_view(), name='register'),
     path('post/<slug:post_slug>/', Showpost.as_view(), name='post'),
     path('chat/', MessageUser.as_view(), name='chat'),
-    # path('add/<slug:post_slug>/', get_user_model, name='add')
+    path('add/<slug:post_slug>/', AddManga.as_view(), name='add')
 ]

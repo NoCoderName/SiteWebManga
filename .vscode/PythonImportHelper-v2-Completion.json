@@ -422,15 +422,6 @@
         "documentation": {}
     },
     {
-        "label": "time",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "time",
-        "description": "time",
-        "detail": "time",
-        "documentation": {}
-    },
-    {
         "label": "application",
         "kind": 5,
         "importPath": "coolsite.coolsite.asgi",
@@ -881,6 +872,15 @@
         "documentation": {}
     },
     {
+        "label": "AddManga",
+        "kind": 6,
+        "importPath": "coolsite.WebManga.views",
+        "description": "coolsite.WebManga.views",
+        "peekOfCode": "class AddManga(DataMixin, CreateView):\n    model = get_user_model()\n    context_object_name = 'add'\n    slug_url_kwarg = 'post_slug'\n    template_name = 'WebManga/index.html'\n    success_url = reverse_lazy('home')\n    def form_valid(self, form):\n        manga = Manga.objects.get(self.slug_url_kwarg)\n        form.instance.read = manga\n        return super().form_valid(form)",
+        "detail": "coolsite.WebManga.views",
+        "documentation": {}
+    },
+    {
         "label": "category",
         "kind": 2,
         "importPath": "coolsite.WebManga.views",
@@ -914,33 +914,6 @@
         "description": "coolsite.manage",
         "peekOfCode": "def main():\n    \"\"\"Run administrative tasks.\"\"\"\n    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'coolsite.settings')\n    try:\n        from django.core.management import execute_from_command_line\n    except ImportError as exc:\n        raise ImportError(\n            \"Couldn't import Django. Are you sure it's installed and \"\n            \"available on your PYTHONPATH environment variable? Did you \"\n            \"forget to activate a virtual environment?\"",
         "detail": "coolsite.manage",
-        "documentation": {}
-    },
-    {
-        "label": "total",
-        "kind": 2,
-        "importPath": "test",
-        "description": "test",
-        "peekOfCode": "def total(line: str) -> dict:\n    total_count = dict()\n    for i in line:\n        if i.isalpha():\n            total_count[i] = total_count.get(i, 0) + 1\n    return total_count\ndef sort_list(numbers: list) -> list:\n    i, count = 0, len(numbers)\n    while i < count - 1:\n        j = 0",
-        "detail": "test",
-        "documentation": {}
-    },
-    {
-        "label": "sort_list",
-        "kind": 2,
-        "importPath": "test",
-        "description": "test",
-        "peekOfCode": "def sort_list(numbers: list) -> list:\n    i, count = 0, len(numbers)\n    while i < count - 1:\n        j = 0\n        while j < count - 1 - i:\n            if numbers[j] > numbers[j + 1]:\n                numbers[j], numbers[j + 1] = numbers[j + 1], numbers[j]\n            j += 1\n        i += 1\n    return numbers",
-        "detail": "test",
-        "documentation": {}
-    },
-    {
-        "label": "isPalindrom",
-        "kind": 2,
-        "importPath": "test",
-        "description": "test",
-        "peekOfCode": "def isPalindrom(x: int) -> bool:\n    return int(str(x)[::-1]) == x\n# print(isPalindrom(784))\n# def form_valid(self, form):\n    #     user = form.save()\n    #     login(self.request, user)\n    #     user1 = get_user_model().objects.get(username=user)\n    #     user1.slug = user.username\n    #     return redirect('home')\n# a = 5 #int(input()) # 5 integer",
-        "detail": "test",
         "documentation": {}
     }
 ]
