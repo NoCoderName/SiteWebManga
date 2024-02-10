@@ -58,7 +58,7 @@ class Category(models.Model):
 
 class User(AbstractUser):
     photo = models.ImageField(upload_to='photo_user/%Y/%m/%d/', blank=True, null=True, verbose_name='Фото пользователя')
-    read = models.ManyToManyField(Manga, blank=True, verbose_name='Читают')
+    read = models.ForeignKey(Manga, blank=True, null=True, on_delete=models.PROTECT, verbose_name='Читают')
     
     # def __str__(self):
     #     return self.user.username
@@ -67,7 +67,7 @@ class User(AbstractUser):
 class Message(models.Model):
     message = models.TextField(verbose_name='Сообщение')
     sending_time = models.DateTimeField(auto_now_add=True, verbose_name='Время отправки')
-    sender = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Отправитель')
+    sender = models.ForeignKey(User, blank=True, null=True, on_delete=models.PROTECT, verbose_name='Отправитель')
 
     def __str__(self):
         return f'{self.sender.username} - {self.sending_time}'
