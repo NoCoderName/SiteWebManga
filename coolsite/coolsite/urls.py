@@ -23,7 +23,7 @@ from coolsite import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('WebManga.urls'))
+    path('', include('BlogApp.urls'))
 ]
 
 if settings.DEBUG:

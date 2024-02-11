@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" href="{% static 'BlogApp/css/styles.css' %}" rel="stylesheet">
+    <title>{{ title }}</title>
+</head>
+
+<body>
+<header>
+  <span class="head_left">
+  {% for m in menu %}
+    <a href="{% url m.url_name %}" id="header" class="little_button">{{m.title}}</a>
+  {% endfor %}
+  </span>
+</header>
+
+<div class="back_home">
+  <a href="#header" class="add_acc_button">Вернуться в начало</a>
+</div>
+
+{% block authentication %}
+{% endblock authentication %}
+
+<div class="container">
+{% block content %}
+{% endblock content %}
+
+  <div class="footer" id="footer">
+    <p>&copy; Все права защищены.</p>
+    <p>&nbsp;</p>
+    <p>Администрация сайта не несет ответственность за ваше здоровье.</p>
+  </div>
+</div>
+</body>
+</html>

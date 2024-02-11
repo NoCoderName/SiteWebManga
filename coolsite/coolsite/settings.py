@@ -38,7 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'WebManga.apps.WebmangaConfig',
+    'BlogApp.apps.BlogappConfig',
+    'ChatApp.apps.ChatappConfig',
+    'LibraryApp.apps.LibraryappConfig',
+    'LoginApp.apps.LoginappConfig',
+    'ProfileApp.apps.ProfileappConfig',
 ]
 
 MIDDLEWARE = [
@@ -126,5 +130,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-
-AUTH_USER_MODEL = 'WebManga.User'
