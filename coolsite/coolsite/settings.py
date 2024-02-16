@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 
+from AppConfig.config import config
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -60,7 +62,9 @@ ROOT_URLCONF = 'coolsite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'AppHTML/templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -81,8 +85,12 @@ WSGI_APPLICATION = 'coolsite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        "ENGINE": f"django.db.backends.{config.PSQL_ENGINE}",
+        "NAME": config.PSQL_NAME,
+        "USER": config.PSQL_USER,
+        "PASSWORD": config.PSQL_PASSWORD,
+        "HOST": config.PSQL_HOST,
+        "PORT": config.PSQL_PORT,
     }
 }
 
@@ -111,7 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = config.TIME_ZONE
 
 USE_I18N = True
 
@@ -120,6 +128,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'AppHTML/static/'),    
+]
 
 STATIC_URL = 'static/'
 
