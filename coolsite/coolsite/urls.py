@@ -24,7 +24,8 @@ from coolsite import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('BlogApp.urls')),
-    path('', include('LoginApp.urls'),)
+    path('', include('LoginApp.urls')),
+    path('', include('ProfileApp.urls')),
 ]
 
 if settings.DEBUG:

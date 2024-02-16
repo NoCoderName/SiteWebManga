@@ -4,9 +4,11 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth import login, logout
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from BlogApp.utils import DataMixin
 
 from .forms import *
+
+from BlogApp.utils import DataMixin
+from ProfileApp.models import Profile
 
 
 class RegisterUser(DataMixin, CreateView):
@@ -22,7 +24,7 @@ class RegisterUser(DataMixin, CreateView):
 
     def form_valid(self, form):
         user = form.save()
-        # Profile.objects.create(user=user)
+        Profile.objects.create(user=user)
         login(self.request, user)
         return redirect('home')
 

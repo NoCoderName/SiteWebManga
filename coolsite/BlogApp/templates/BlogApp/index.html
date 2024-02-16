@@ -17,7 +17,7 @@
                         <li><b>{{ p.title }}</b></li><br>
                         <li >{{ p.content|truncatewords:15 }}</li><br>
                 </div>
-                <!-- <li class="full_button"><a href="{{ p.get_absolute_url }}">Читать</a></li> -->
+                <a href="{% url 'add' slug=p.slug %}"><button class="full_button">Добавить</button></a>
                 <a href="{{ p.get_absolute_url }}" class="full_button">Читать</a>
             </ul>
         {% endif %}
