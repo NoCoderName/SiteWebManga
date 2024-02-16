@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 
+from AppConfig.config import config
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -81,8 +83,12 @@ WSGI_APPLICATION = 'coolsite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        "ENGINE": f"django.db.backends.{config.PSQL_ENGINE}",
+        "NAME": config.PSQL_NAME,
+        "USER": config.PSQL_USER,
+        "PASSWORD": config.PSQL_PASSWORD,
+        "HOST": config.PSQL_HOST,
+        "PORT": config.PSQL_PORT,
     }
 }
 
@@ -111,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = config.TIME_ZONE
 
 USE_I18N = True
 
