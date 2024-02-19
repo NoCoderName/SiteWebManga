@@ -1,6 +1,7 @@
 import os
 from pydantic_settings import BaseSettings
 
+
 if not os.environ.get("ENV_LOADED"):
     if os.path.isfile(".env"):
         from dotenv import load_dotenv
@@ -10,7 +11,8 @@ if not os.environ.get("ENV_LOADED"):
     else:
         print("No .env file found. Usding system environment variables")
         
-        
+
+
 class Config(BaseSettings):
     # General settings
     TIME_ZONE: str
