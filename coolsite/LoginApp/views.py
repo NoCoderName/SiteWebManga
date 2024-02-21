@@ -24,8 +24,6 @@ class RegisterUser(DataMixin, CreateView):
 
     def form_valid(self, form):
         user = form.save()
-        # user.slug.add(user.username)
-        get_user_model().objects.create(user=user)
         login(self.request, user)
         return redirect('home')
 
