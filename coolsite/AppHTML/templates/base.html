@@ -21,7 +21,7 @@
 
   <span class="head_right">
     {% if request.user.is_authenticated %}
-      <p>{{ user.username }} | <a href="{% url 'logout' %}" id="header" class="little_button">Выйти</a></p>
+      <p><a href="#">{{ user.username }}</a> | <a href="{% url 'logout' %}" id="header" class="little_button">Выйти</a></p>
     {% else %}
       <p><a href="{% url 'register' %}" class="little_button">Зарегистророваться</a><a href="{% url 'login' %}" class="little_button">Войти</a></p>
     {% endif %}
@@ -32,10 +32,11 @@
   <a href="#header" class="add_acc_button">Вернуться в начало</a>
 </div>
 
-{% block authentication %}
+{% block authentication %} 
 {% endblock authentication %}
 
 <div class="container">
+<p>{{user.slug}}</p>
 {% block content %}
 {% endblock content %}
 
@@ -45,6 +46,5 @@
     <p>Администрация сайта не несет ответственность за ваше здоровье.</p>
   </div>
 </div>
-<!-- <script src="{% static 'WebManga/js/js.js' %}"></script> -->
 </body>
 </html>

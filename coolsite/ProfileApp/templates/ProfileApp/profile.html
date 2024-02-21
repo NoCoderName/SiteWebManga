@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if post.photo %}
+    <span class="show_post_photo">
+        <img src="{{ prof.photo.url }}" style="width: 300px; border-radius: 10px;">
+    </span>
+{% endif %}
+
+
+<ul>
+    <p>{{ prof.user }}</p>
+</ul>
+
+{% endblock %}
