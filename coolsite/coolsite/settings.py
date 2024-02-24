@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'BlogApp.apps.BlogappConfig',
     'ChatApp.apps.ChatappConfig',
-    'LibraryApp.apps.LibraryappConfig',
     'LoginApp.apps.LoginappConfig',
     'ProfileApp.apps.ProfileappConfig',
 ]

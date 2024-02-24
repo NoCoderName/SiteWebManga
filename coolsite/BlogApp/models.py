@@ -10,8 +10,13 @@ class Manga(models.Model):
     time_create = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
     time_update = models.DateTimeField(auto_now=True, verbose_name='Время изменения')
     is_published = models.BooleanField(default=True, verbose_name='Публикация')
-    cat = models.ForeignKey('Category', on_delete=models.PROTECT, verbose_name='Категории')
+    cat = models.ManyToManyField('Category', verbose_name='Категории')
     manga = models.ManyToManyField('MangaImage', verbose_name='Манга')
+    rating = models.DecimalField(max_digits=2, decimal_places=1, null=True, verbose_name='Рейтинг')
+    years_of_release = models.PositiveSmallIntegerField(blank=True, null=True, verbose_name='Год релиза')
+    author = models.CharField(max_length=255, null=True, blank=True, verbose_name='Автор')
+    transfer_status = models.CharField(max_length=255, null=True, blank=True, verbose_name='Статус перевода')
+    # conments = ... 
 
     def __str__(self):
         return self.title
