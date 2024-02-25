@@ -21,7 +21,7 @@
 
   <span class="head_right">
     {% if request.user.is_authenticated %}
-      <p><a href="#">{{ user.username }}</a> | <a href="{% url 'logout' %}" id="header" class="little_button">Выйти</a></p>
+      <p><a href="{% url 'profile_user:profile' prof_slug=user.slug %}">{{ user.username }}</a> | <a href="{% url 'logout' %}" id="header" class="little_button">Выйти</a></p>
     {% else %}
       <p><a href="{% url 'register' %}" class="little_button">Зарегистророваться</a><a href="{% url 'login' %}" class="little_button">Войти</a></p>
     {% endif %}
@@ -36,7 +36,7 @@
 {% endblock authentication %}
 
 <div class="container">
-<p>{{user.slug}}</p>
+
 {% block content %}
 {% endblock content %}
 

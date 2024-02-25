@@ -10,14 +10,13 @@
     <div class="scroll_container">
 
     {% for p in posts %}
-        {% if p.cat.name == i.name %}
+        {% if i in p.cat.all %}
             <ul class="scroll_box">
                 <li class="image_resize"><img src="{{ p.photo.url }}" style="width: 350px; height: 400px; border-radius: 10px 10px 0 0;"></li>
                 <div class="box_text">
                         <li><b>{{ p.title }}</b></li><br>
                         <li >{{ p.content|truncatewords:15 }}</li><br>
                 </div>
-                <a href="{% url 'add' slug=p.slug %}"><button class="full_button">Добавить</button></a>
                 <a href="{{ p.get_absolute_url }}" class="full_button">Читать</a>
             </ul>
         {% endif %}

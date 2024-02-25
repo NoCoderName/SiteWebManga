@@ -15,7 +15,10 @@
     <hr>
 
     <div class="about_the_article">
-        <p>Категория: {{ post.cat }}</p>
+        <p>Категория:</p>
+        {% for i in post.cat.all %}
+        <p>{{ i }}</p>
+        {% endfor %}
         <p>Добавлено: {{ post.time_create }}</p>
         <p>{{ post.pk }}</p>
     </div>
