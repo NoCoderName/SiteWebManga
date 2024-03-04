@@ -2,15 +2,20 @@
 
 {% block content %}
 
-{% if post.photo %}
-    <span class="show_post_photo">
-        <img src="{{ prof.photo.url }}" style="width: 300px; border-radius: 10px;">
-    </span>
-{% endif %}
+<div>
+    {% if prof.photo %}
+        <span class="show_post_photo">
+            <img src="{{ prof.photo.url }}" style="width: 300px; border-radius: 10px;">
+        </span>
+    {% endif %}
 
+    <a href="#">редактировать</a>
+</div>
 
-<ul>
-    <p>{{ prof.read }}</p>
-</ul>
+<div>
+    {% for i in range %}
+        <div>{{ i }}</div>
+    {% endfor %}
+</div>
 
 {% endblock %}

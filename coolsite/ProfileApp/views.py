@@ -21,6 +21,7 @@ class AddReadManga(DataMixin, View):
 class ProfileView(DataMixin, DetailView):
     model = get_user_model()
     template_name = 'ProfileApp/profile.html'
+    context_object_name = 'prof'
     slug_url_kwarg = 'prof_slug'
 
     def get_context_data(self, *, object_list=None, **kwargs):

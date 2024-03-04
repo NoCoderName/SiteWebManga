@@ -11,8 +11,6 @@ class ProfileAdmin(UserAdmin):
     readonly_fields = ["slug"]
     list_display = ('id', 'get_html_image', 'username', 'slug', 'first_name', 'last_name', 'email', 'is_staff', 'date_joined')
     list_display_links = ('id', 'username', 'slug')
-    prepopulated_fields = {'slug': ('username',)}
-
     
     #то что отражается в админ панели при редактирования модели 
     fieldsets = (
