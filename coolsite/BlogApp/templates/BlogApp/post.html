@@ -21,6 +21,7 @@
         {% endfor %}
         <p>Добавлено: {{ post.time_create }}</p>
         <p>{{ post.pk }}</p>
+        <a href="{% url 'profile_user:add' slug=post.slug %}">Добавить в избранное</a>
     </div>
 </div>
 

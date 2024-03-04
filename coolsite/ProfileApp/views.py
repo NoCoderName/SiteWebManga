@@ -10,13 +10,13 @@ from BlogApp.utils import DataMixin
 
 class AddReadManga(DataMixin, View):
     model = get_user_model()
+    slug_url_kwarg = 'slug'
 
     def get(self, request, *args, **kwargs):
-        profile = self.model.objects.get(user=request.user)
         manga = Manga.objects.get(slug=kwargs.get('slug'))
-        profile.read.add(manga)
-        return redirect('home')
-    
+        request.user.favorites.add(manga)
+        return redirect('home')    
+
 
 class ProfileView(DataMixin, DetailView):
     model = get_user_model()
