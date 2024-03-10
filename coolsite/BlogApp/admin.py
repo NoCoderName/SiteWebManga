@@ -44,6 +44,13 @@ class CategoryAdmnin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
 
 
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('id', 'message', 'sender')
+    list_display_links = ('id', 'message',)
+    search_fields = ('message',)
+
+
 admin.site.register(Manga, MangaAdmin)
 admin.site.register(MangaImage, MangaImagesAdmin)
 admin.site.register(Category, CategoryAdmnin)
+admin.site.register(Comment, CommentAdmin)

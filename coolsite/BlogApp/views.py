@@ -4,8 +4,7 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import FormMixin
 
 from .utils import *
-
-from CommentApp.forms import CommentForm
+from .forms import CommentForm
 
 
 class MangaHome(DataMixin, ListView):

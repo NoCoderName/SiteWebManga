@@ -26,7 +26,6 @@ urlpatterns = [
     path('', include('BlogApp.urls')),
     path('', include('LoginApp.urls')),
     path('', include('ProfileApp.urls')),
-    path('', include('CommentApp.urls')),
 ]
 
 if settings.DEBUG:
