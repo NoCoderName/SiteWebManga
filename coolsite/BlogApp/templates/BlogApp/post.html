@@ -21,7 +21,7 @@
         {% endfor %}
         <p>Добавлено: {{ post.time_create }}</p>
         <p>{{ post.pk }}</p>
-        <a href="{% url 'profile_user:add' slug=post.slug %}">Добавить в избранное</a>
+
     </div>
 </div>
 
@@ -51,5 +51,14 @@
     {% endif %}
 {% endfor %}
 </div>
+<hr>
+<form action="" method="post">
+    {% csrf_token %}
+    {% for f in form %}
+    {{ f }}
+    {% endfor %}
+    <button type="submit" class="to_send_bt">Отправить</button>
+</form>
+
 
 {% endblock content%}

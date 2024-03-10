@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'ChatApp.apps.ChatappConfig',
     'LoginApp.apps.LoginappConfig',
     'ProfileApp.apps.ProfileappConfig',
+    'CommentApp.apps.CommentappConfig',
 ]
 
 MIDDLEWARE = [

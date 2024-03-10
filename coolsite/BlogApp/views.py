@@ -1,7 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView
+from django.views.generic.edit import FormMixin
 
 from .utils import *
+
+from CommentApp.forms import CommentForm
 
 
 class MangaHome(DataMixin, ListView):
@@ -31,8 +35,9 @@ class About(DataMixin, ListView):
         return dict(list(context.items()) + list(c_def.items()))
     
 
-class Showpost(DataMixin, DetailView):
+class Showpost(FormMixin, DataMixin, DetailView):
     model = Manga
+    form_class = CommentForm
     template_name = 'BlogApp/post.html'
     slug_url_kwarg = 'post_slug'
     context_object_name = 'post'
@@ -42,3 +47,25 @@ class Showpost(DataMixin, DetailView):
         c_def = self.get_user_context(title=context['post'])
 
         return dict(list(context.items()) + list(c_def.items()))
+    
+    def post(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return reverse_lazy('login')
+        self.object = self.get_object()
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+    
+    def form_valid(self, form):
+        comment = form.save(commit=False)
+        comment.sender = self.request.user
+        comment.message = form.cleaned_data['message']
+        comment.save()
+
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('post', kwargs={'post_slug': self.object.slug})
+    

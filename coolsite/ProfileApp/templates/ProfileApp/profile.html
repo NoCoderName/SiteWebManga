@@ -10,11 +10,20 @@
     {% endif %}
 
     <a href="#">редактировать</a>
+    <hr>
 </div>
 
 <div>
-    {% for i in range %}
-        <div>{{ i }}</div>
+    <h1>Избраннное</h1>
+    {% for i in prof.favorites.all %}
+    <ul class="scroll_box">
+        <li class="image_resize"><img src="{{ i.photo.url }}" style="width: 350px; height: 400px; border-radius: 10px 10px 0 0;"></li>
+        <div class="box_text">
+                <li><b>{{ i.title }}</b></li><br>
+                <li >{{ i.content|truncatewords:15 }}</li><br>
+        </div>
+        <a href="{{ i.get_absolute_url }}" class="full_button">Читать</a>
+    </ul>
     {% endfor %}
 </div>
 

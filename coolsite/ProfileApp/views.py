@@ -1,5 +1,5 @@
-import django.db
 from django.shortcuts import redirect
+from django.urls import reverse_lazy
 from django.views.generic import View, DetailView
 from django.contrib.auth import get_user_model
 
@@ -15,7 +15,8 @@ class AddReadManga(DataMixin, View):
     def get(self, request, *args, **kwargs):
         manga = Manga.objects.get(slug=kwargs.get('slug'))
         request.user.favorites.add(manga)
-        return redirect('home')    
+        return redirect(reverse('post', kwargs={'post_slug': kwargs.get('slug')}))
+
 
 
 class ProfileView(DataMixin, DetailView):
