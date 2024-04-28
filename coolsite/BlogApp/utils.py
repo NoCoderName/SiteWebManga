@@ -1,9 +1,11 @@
 from .models import *
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 menu = [
-    {'title': 'Главная страница', 'url_name': 'home'},
-    {'title': 'О сайте', 'url_name': 'about'},
+    {'title': 'Manga.ka', 'url_name': 'home'},
+    {'title': 'Каталог', 'url_name': 'catalog'},
+    {'title': 'Поиск', 'url_name': 'about'},
 ]
 
 

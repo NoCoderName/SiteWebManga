@@ -15,7 +15,7 @@ class Manga(models.Model):
     manga = models.ManyToManyField('MangaImage', verbose_name='Манга')
     rating = models.DecimalField(max_digits=2, decimal_places=1, null=True, verbose_name='Рейтинг')
     years_of_release = models.PositiveSmallIntegerField(blank=True, null=True, verbose_name='Год релиза')
-    author = models.CharField(max_length=255, null=True, blank=True, verbose_name='Автор')
+    author = models.CharField(max_length=255, null=True, blank=True, verbose_name='Автор') # переделать на foreign key
     transfer_status = models.CharField(max_length=255, null=True, blank=True, verbose_name='Статус перевода')
 
     def __str__(self):
@@ -31,12 +31,15 @@ class Manga(models.Model):
 
 
 class MangaImage(models.Model):
+    # Tom
     image = models.ImageField(upload_to='photos/%Y/%m/%d/', verbose_name='Изображение манги')
-    description = models.TextField(blank=True, verbose_name='Описание')
+    title = models.CharField(max_length=255, verbose_name='Название')
+    chapter = models.IntegerField(default=0, verbose_name='Глава')
+    page = models.IntegerField(default=0, verbose_name='Страница')
     time_create = models.DateTimeField(auto_now_add=True, verbose_name='Время добавления')
 
     def __str__(self):
-        return self.description
+        return f'{self.title} {self.chapter} {self.page}'
 
     class Meta:
         verbose_name = 'Изображение манги'

@@ -23,11 +23,10 @@ class MangaAdmin(admin.ModelAdmin):
 
 
 class MangaImagesAdmin(admin.ModelAdmin):
-    list_display = ['id', 'get_html_image', 'description', 'time_create']
-    list_display_links = ['id', 'time_create']
-    search_fields = ['id', 'description']
-    list_filter = ['description',]
-    fields = ['image', 'description', 'time_create']
+    list_display = ['id', 'get_html_image', 'chapter', 'title', 'page', 'time_create']
+    list_display_links = ['id', 'time_create', 'title']
+    search_fields = ['id', 'title']
+    fields = ['image', 'title', 'chapter', 'page', 'time_create']
     readonly_fields = ['time_create',]
 
     def get_html_image(self, object):

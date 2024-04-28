@@ -1,5 +1,5 @@
 from django import template
-from BlogApp.models import *
+from BlogApp.models import Category, Comment
 
 
 register = template.Library()
@@ -14,3 +14,9 @@ def get_categories():
             cat_list.append(category)
     
     return cat_list
+
+@register.simple_tag(name='comment')
+def get_message():
+    message = Comment.objects.all()
+
+    return message

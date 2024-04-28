@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="manga_chapter">
+    {% for manga in post.manga.all %}
+        <label for="{{ manga.title }} {{ manga.chapter }} {{ manga.page }}" class="label_box">Глава {{ forloop.counter }}</label><br>
+        <input type="checkbox" id="{{ manga.title }} {{ manga.chapter }} {{ manga.page }}"  class="info-toggle">
+        <div class="image_chapter">
+            <img src="{{ manga.image.url }}">
+        </div>
+        <br>
+    {% endfor %}
+</div>
+
+{% endblock content %}

@@ -2,7 +2,7 @@
 {% load webmanga_tags %}
 
 {% block content %}
-
+<!-- {% comment as mess %} -->
 <div class="read_post">
 {% if post.photo %}
     <span class="show_post_photo">
@@ -15,42 +15,32 @@
     <hr>
 
     <div class="about_the_article">
-        <p>Категория:</p>
+        <p class="content_article">Категория:</p>
         {% for i in post.cat.all %}
-        <p>{{ i }}</p>
+        <p class="content_article">{{ i }}</p>
         {% endfor %}
-        <p>Добавлено: {{ post.time_create }}</p>
-        <p>{{ post.pk }}</p>
-
+        <p class="content_article">Год релиза {{ post.years_of_release }}</p>
+        <p class="content_article">{{ post.pk }}</p>
+        <p class="content_article">Рейтинг {{ post.rating }}</p>
+        <p class="content_article">Перевод: {{ post.transfer_status }}</p>
+        <p class="content_article">Автор: {{ post.author }}</p>
+        <a class="little_button" href="{% url 'profile_user:add_favorites' slug=post.slug %}">Добавить в избранное</a>
     </div>
 </div>
 
-<div class="manga_chapter">
-{% for manga in post.manga.all %}
-    {% if not request.user.is_authenticated %}
-        {% if forloop.counter < 3 %}
-            <label for="{{ manga.description }}" class="label_box">Глава {{ forloop.counter }}</label><br>
-            <input type="checkbox" id="{{ manga.description }}"  class="info-toggle">
-            <div class="image_chapter">
-                <img src="{{ manga.image.url }}">
-            </div>
-            <br>
-        {% else %}
-            <label for="{{ manga.description }}" class="label_box">Глава {{ forloop.counter }}</label><br>
-            <input type="checkbox" id="{{ manga.description }}"  class="info-toggle">
-            <p class="image_chapter"><a href="{% url 'login' %}">Для дальнейшего чтения необходимо авторизоваться</a></p>
-            <br>
-        {% endif %}
-    {% else %}
-        <label for="{{ manga.description }}" class="label_box">Глава {{ forloop.counter }}</label><br>
-        <input type="checkbox" id="{{ manga.description }}"  class="info-toggle">
-        <div class="image_chapter">
-            <img src="{{ manga.image.url }}">
-        </div>
-        <br>
-    {% endif %}
+<a class="little_button" href="{% url 'post_read' post_slug=post.slug %}">Читать</a>
+
+<hr>
+{% comment as comment %}
+
+{% for i in comment %}
+{% if i.sender|safe == user.username|safe %}
+    <p class="mess_block_right"><span class="chat_user">{{ i.sender }}</span> <br> <span class="chat_message">{{ i.message }}</span></p>
+{% elif i.sender|safe != user.username|safe %}
+    <p class="mess_block"><span class="chat_user">{{ i.sender }}</span> <br> <span class="chat_message">{{ i.message }}</span></p>
+{% endif %}
+
 {% endfor %}
-</div>
 <hr>
 <form action="" method="post">
     {% csrf_token %}
@@ -61,4 +51,4 @@
 </form>
 
 
-{% endblock content%}
+{% endblock content %}
